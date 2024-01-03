@@ -1,0 +1,13 @@
+{% extends "base.html"%}
+{% load static %}
+{% block css %} {% static "css/style.css" %} {% endblock %}
+{% block title %}Profile{% endblock title%}
+
+{% block body %}
+    <div class="profile middle">
+        <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png" alt="image" width=150 height=120>
+        <p>Username: {{data.username}}</p>
+        <p>Email: {{data.email}}</p>
+        <a href="{% url 'logout'%}" class="button">logout</a>
+    </div>
+{% endblock body %}

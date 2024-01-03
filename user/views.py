@@ -55,3 +55,12 @@ def logout(request):
     auth.logout(request)
     
     return redirect("login")
+
+def profile(request):
+    data = {
+        "username": request.user.username,
+        "email": request.user.email,
+        # Add more user-related data as needed
+    }
+    context = {"data": data}
+    return render(request, 'user/profile.html', context=context)

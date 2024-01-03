@@ -1,10 +1,27 @@
-{% block title %}Register{% endblock%}
+{% extends "base.html"%}
+{% load static %}
+{% block css %} {% static "css/style.css" %} {% endblock %}
+{% block title %}Registration{% endblock%}
+
 {% block body %}
-    <div>
-        <form method="POST" autocomplete="off">
+    <div class="register middle">
+        <h2>Registration </h2>
+        <form method="POST" autocomplete="off" class="form">
             {% csrf_token %}
-            {{registerform.as_p}}
-            <input type="submit" value="Register">
+
+            {% for field in registerform %}
+                <div class="form-item">
+                
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <p class="errors">{{error}}</p>
+                    {% endfor%}
+                </div><br>
+
+            {% endfor %}
+            
+            <input type="submit" value="Register" class="button">
         </form>
     </div>
 {% endblock%}

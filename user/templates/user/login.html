@@ -1,10 +1,25 @@
+{% extends "base.html"%}
+{% load static %}
+{% block css %} {% static "css/style.css" %} {% endblock %}
 {% block title %}Login{% endblock%}
+
 {% block body %}
-    <div>
-        <form method="POST" autocomplete="off">
+    <div class="login middle">
+        <h2>Login</h2>
+        <form method="POST" autocomplete="off" class="form">
             {% csrf_token %}
-            {{loginform.as_p}}
-            <input type="submit" value="Login">
+            {% for field in loginform %}
+                <div class="form-item">
+                
+                    {{ field.label_tag }}
+                    {{ field }}
+                    
+                </div><br>
+            {% endfor %}
+            {% if loginform.errors %}
+                <p class="errors">Your username and password didn't match. Please try again.</p>
+            {% endif %}
+            <input type="submit" value="Login" class="button">
         </form>
     </div>
 {% endblock%}

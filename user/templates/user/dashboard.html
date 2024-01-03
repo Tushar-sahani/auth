@@ -1,7 +1,12 @@
+{% extends "base.html"%}
+{% load static %}
+{% block css %} {% static "css/style.css" %} {% endblock %}
 {% block title %}Dashboard{% endblock title%}
+
 {% block body %}
-    <div class="dashboard">
-        <h1>welcome {{username}}</h1>
-        <a href="{% url 'logout'%}">logout</a>
+    <div class="dashboard middle">
+        <h1>Welcome {{username|upper}}</h1>
+        <a href="{% url 'profile'%}" class="button" >View Profile</a>
+        <a href="{% url 'logout'%}"class="button">logout</a>
     </div>
 {% endblock body %}
