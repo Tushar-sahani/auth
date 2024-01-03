@@ -3,7 +3,7 @@ from . forms import CreateUserForm, LoginForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import auth
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate
 
 # Create your views here.
 
@@ -26,6 +26,7 @@ def register(request):
     return render(request,'user/register.html',context=context)
 
 
+
 def login(request):
 
     form = LoginForm()
@@ -46,21 +47,27 @@ def login(request):
     context = {'loginform':form}
     return render(request,'user/login.html',context=context)
 
+
+
 @login_required(login_url="login")
 def dashboard(request,username):
     context = {"username":username}
     return render(request,'user/dashboard.html',context=context)
+
+
 
 def logout(request):
     auth.logout(request)
     
     return redirect("login")
 
+
+
+@login_required(login_url="login")
 def profile(request):
     data = {
         "username": request.user.username,
-        "email": request.user.email,
-        # Add more user-related data as needed
+        "email": request.user.email
     }
     context = {"data": data}
     return render(request, 'user/profile.html', context=context)
