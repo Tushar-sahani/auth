@@ -72,3 +72,14 @@ Just run this command:
 ``` python
 python manage.py runserver
 ```
+
+### Run by Docker
+
+1. Building image
+   ```terminal
+   docker build -t auth .
+   ```
+2. Run image
+   ```terminal
+   docker run auth
+   ```
