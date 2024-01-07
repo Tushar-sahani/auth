@@ -44,6 +44,7 @@ def login(request):
             if user is not None:
                 auth.login(request,user)
                 return redirect('dashboard',username=username)
+            
     context = {'loginform':form}
     return render(request,'user/login.html',context=context)
 
